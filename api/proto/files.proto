@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package files;
+
+// The file service definition.
+service FileService {
+  // Uploads a file.
+  rpc Upload(FileUploadRequest) returns (FileUploadResponse);
+
+  // Downloads a file.
+  rpc Download(FileDownloadRequest) returns (stream FileDownloadResponse);
+
+  // Deletes a file.
+  rpc Delete(FileDeleteRequest) returns (FileDeleteResponse);
+}
+
+// The request message for file upload.
+message FileUploadRequest {
+  string filename = 1;
+  bytes content = 2;
+}
+
+// The response message for file upload.
+message FileUploadResponse {
+  string message = 1;
+}
+
+// The request message for file download.
+message FileDownloadRequest {
+  string filename = 1;
+}
+
+// The response message for file download.
+message FileDownloadResponse {
+  bytes content = 1;
+}
+
+// The request message for file delete.
+message FileDeleteRequest {
+  string filename = 1;
+}
+
+// The response message for file delete.
+message FileDeleteResponse {
+  string message = 1;
+}
