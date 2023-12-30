@@ -2,10 +2,12 @@ syntax = "proto3";
 
 package files;
 
+option go_package = "github.com/wcygan/fs";
+
 // The file service definition.
 service FileService {
   // Uploads a file.
-  rpc Upload(FileUploadRequest) returns (FileUploadResponse);
+  rpc Upload(stream FileUploadRequest) returns (FileUploadResponse);
 
   // Downloads a file.
   rpc Download(FileDownloadRequest) returns (stream FileDownloadResponse);
